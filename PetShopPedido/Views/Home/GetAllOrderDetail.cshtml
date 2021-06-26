@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PetShopPedido.Models.getallorders>
+
+@{
+    ViewBag.Title = "GetAllOrderDetail";
+}
+
+<div class="container mt-5 mb-5">
+<h2>Todos los Pedidos de Clientes</h2>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nro</th>
+            <th>Usuario</th>
+            <th>Importe S/.</th>
+            <th>Tipo de Pago</th>
+            <th>Fecha Pedido</th>
+            <th>Estado</th>
+            <th>Acción</th>
+            <th>Tracking</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.InvoiceId)</td>
+            <td>@Html.DisplayFor(modelItem => item.user)</td>
+            <td>S/. @Html.DisplayFor(modelItem => item.Bill)</td>
+            <td>@Html.DisplayFor(modelItem => item.Payment)</td>
+            <td>@Html.DisplayFor(modelItem => item.InvoiceDate)</td>
+
+
+            <td>
+                @if (item.Status == "0")
+                {
+                    <span class="btn btn-success">Aprobado</span>
+                }
+                else
+                {
+                    <a href="@Url.Action("ConfirmOrder","Home", new { InvoiceId = item.InvoiceId })" class="btn btn-danger">Pendiente</a>
+                }
+            </td>
+            <td>
+                <a href="@Url.Action("DetallesPedido","Home", new { id = item.InvoiceId })" class="btn btn-primary">Productos</a>
+            </td>
+            <td>
+                <a href="@Url.Action("TrackingPedidoCliente","Home", new { id = item.InvoiceId })" class="btn btn-info">Tracking</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+</div>

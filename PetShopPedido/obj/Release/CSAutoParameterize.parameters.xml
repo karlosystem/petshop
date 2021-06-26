@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="dbOnlineStoreModel-Web.config Connection String" description="dbOnlineStoreModel Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.dbOnlineStoreModel.csdl|res://*/Models.dbOnlineStoreModel.ssdl|res://*/Models.dbOnlineStoreModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-G4LG5PL;initial catalog=dbOnlineStore;user id=sa;password=sqlserver;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\PetShopPedido\\PetShopPedido\\PetShopPedido\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='dbOnlineStoreModel']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,82 @@
+﻿@model PetShopPedido.Models.tblProducts
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div class="container mt-5 mb-5">
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2>Agregar Producto</h2>
+            <div class="form-group">
+                <span>Nombre:</span>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <span>Serie:</span>
+                @Html.TextBoxFor(m => m.Serie, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <span>Stock:</span>
+                @Html.TextBoxFor(m => m.Stock, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <span>Marca:</span>
+                @Html.TextBoxFor(m => m.Marca, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <span>Categoria:</span>
+                @Html.DropDownListFor(m => m.CatID, ViewBag.CatList as SelectList, "-- Selecciona Categoria ---", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <span>Categoria:</span>
+                @Html.DropDownListFor(m => m.idProv, ViewBag.ProvList as SelectList, "-- Selecciona Proveedor ---", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <span>Precio Unit S/.:</span>
+                @Html.TextBoxFor(m => m.Unit, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <span>Imagen 01:</span>
+                <input type="file" name="Image" />
+            </div>
+
+            <div class="form-group">
+                <span>Imagen 02:</span>
+                <input type="file" name="Image02" />
+            </div>
+
+            <div class="form-group">
+                <span>Imagen 03:</span>
+                <input type="file" name="Image03" />
+            </div>
+
+            <div class="form-group">
+                <span>Descripción:</span>
+                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <span>Descripción HTML:</span>
+                @Html.TextBoxFor(m => m.DescriptionHTML, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Agregar Producto" class="btn btn-primary py-3 px-5">
+            </div>
+
+            <h3 style="color:red;">@TempData["msg"]</h3>
+
+        </div>
+
+    </div>
+
+</div>
+}

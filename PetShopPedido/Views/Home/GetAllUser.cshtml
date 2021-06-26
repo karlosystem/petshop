@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PetShopPedido.Models.tblUser>
+
+@{
+    ViewBag.Title = "GetAllUser";
+}
+
+<div class="container-fluid mt-5 mb-5">
+    <h2>Usuarios del Sistema</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellidos
+                </th>
+                <th>
+                    Direccion
+                </th>
+                <th>
+                    Telefono
+                </th>
+                <th>
+                    Registro
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoleType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecharegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+
+            @if (item.RoleType == 2)
+            {
+                <span class="btn btn-success">Usuario</span>
+            }
+            else
+            {
+                <span class="btn btn-info">Administrador</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Account", new { id = item.UserId})" class="btn btn-primary">Editar</a>
+            <a href="@Url.Action("Delete", "Account", new { id = item.UserId })" class="btn btn-danger">Eliminar</a>
+        </td>
+
+    </tr>
+        }
+
+    </table>
+</div>

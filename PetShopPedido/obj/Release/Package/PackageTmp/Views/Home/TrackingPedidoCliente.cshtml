@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PetShopPedido.Models.vw_TrackingEstados>
+
+@{
+    ViewBag.Title = "TrackingPedidoCliente";
+}
+
+<div class="container mt-5 mb-5">
+    <h2>Seguimiento del Pedido - Tracking</h2>
+    <p>
+        @*@Html.ActionLink("Agregar", "Create", null, new { @class = "btn btn-info" })*@
+
+        <a href="@Url.Action("Create","Tracking")" class="btn btn-danger">Agregar</a>
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Pedido nro.
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>
+                    Fecha Registro
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.observacion)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>            
+            <button type="button" class="btn btn-warning">@Html.DisplayFor(modelItem => item.estado)</button>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created_On)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalles", "Detalles", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+        }
+
+    </table>
+
+</div>

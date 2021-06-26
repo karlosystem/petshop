@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbOnlineStoreModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="CatId" />
+    </Key>
+    <Property Name="CatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblEstados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="activo" Type="int" />
+  </EntityType>
+  <EntityType Name="tblFactura">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="30" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="idUser" Type="int" />
+    <Property Name="idTipoPago" Type="int" />
+    <Property Name="estado" Type="int" />
+    <Property Name="FinalTotal" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="tblFacturaDetalles">
+    <Key>
+      <PropertyRef Name="idDetaFactura" />
+    </Key>
+    <Property Name="idDetaFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idFactura" Type="int" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="UnitPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="estado" Type="int" />
+  </EntityType>
+  <EntityType Name="tblInvoice">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="date" />
+  </EntityType>
+  <EntityType Name="tblMascota">
+    <Key>
+      <PropertyRef Name="idMasc" />
+    </Key>
+    <Property Name="idMasc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomMasc" Type="varchar" MaxLength="30" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="idUser" Type="int" />
+    <Property Name="idRaza" Type="int" />
+    <Property Name="estado" Type="int" />
+  </EntityType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="Contact" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Total" Type="int" />
+    <Property Name="OrderDate" Type="date" />
+    <Property Name="PayMethod" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="InvoiceId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="CatID" Type="int" />
+    <Property Name="Stock" Type="int" />
+    <Property Name="Serie" Type="varchar" MaxLength="30" />
+    <Property Name="Marca" Type="varchar" MaxLength="30" />
+    <Property Name="DescriptionHTML" Type="text" />
+    <Property Name="Image02" Type="varchar" MaxLength="30" />
+    <Property Name="Image03" Type="varchar" MaxLength="30" />
+    <Property Name="estado" Type="int" />
+    <Property Name="FechaRegistro" Type="date" />
+    <Property Name="idProv" Type="int" />
+    <Property Name="idUser" Type="int" />
+  </EntityType>
+  <EntityType Name="tblProveedor">
+    <Key>
+      <PropertyRef Name="idProv" />
+    </Key>
+    <Property Name="idProv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomProv" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="RUC" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="FechaRegistro" Type="date" />
+  </EntityType>
+  <EntityType Name="tblRaza">
+    <Key>
+      <PropertyRef Name="idRaza" />
+    </Key>
+    <Property Name="idRaza" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomRaza" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblServicio">
+    <Key>
+      <PropertyRef Name="idServ" />
+    </Key>
+    <Property Name="idServ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomServ" Type="varchar" MaxLength="30" />
+    <Property Name="precServ" Type="money" />
+    <Property Name="desServ" Type="varchar" MaxLength="30" />
+    <Property Name="horarioServ" Type="varchar" MaxLength="50" />
+    <Property Name="fecServ" Type="varchar" MaxLength="50" />
+    <Property Name="enabled" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="idUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTipo">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomTipo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="createDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTipoPago">
+    <Key>
+      <PropertyRef Name="idTipoPago" />
+    </Key>
+    <Property Name="idTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomTipoPago" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTracking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="observacion" Type="varchar" MaxLength="100" />
+    <Property Name="InvoiceId" Type="int" />
+    <Property Name="IdEstado" Type="int" />
+    <Property Name="Modified_On" Type="smalldatetime" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Sys_Change_Date" Type="datetime2" Precision="7" />
+    <Property Name="activo" Type="int" />
+  </EntityType>
+  <EntityType Name="tblTransaccion">
+    <Key>
+      <PropertyRef Name="idTransaccion" />
+    </Key>
+    <Property Name="idTransaccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="RoleType" Type="int" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="int" />
+    <Property Name="fecharegistro" Type="date" />
+    <Property Name="id_veterinario" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.getallorders' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="getallorders">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="user" Type="varchar" MaxLength="50" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="date" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.getallorderusers' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="getallorderusers">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="user" Type="varchar" MaxLength="50" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="date" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.user_invoices' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="user_invoices">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="Customer" Type="varchar" MaxLength="50" />
+    <Property Name="Bill" Type="int" />
+    <Property Name="Payment" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceDate" Type="date" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_comboPedidos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_comboPedidos">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="int" Nullable="false" />
+    <Property Name="pedido" Type="varchar" MaxLength="44" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_FacturasDetalles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_FacturasDetalles">
+    <Key>
+      <PropertyRef Name="idDetaFactura" />
+    </Key>
+    <Property Name="idDetaFactura" Type="int" Nullable="false" />
+    <Property Name="idFactura" Type="int" />
+    <Property Name="ItemId" Type="int" />
+    <Property Name="Producto" Type="varchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Quantity" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Total" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="estado" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_getallproducts' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_getallproducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Category" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Stock" Type="int" />
+    <Property Name="Serie" Type="varchar" MaxLength="30" />
+    <Property Name="Marca" Type="varchar" MaxLength="30" />
+    <Property Name="estado" Type="int" />
+    <Property Name="FechaRegistro" Type="date" />
+    <Property Name="idUser" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_ListaFacturas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_ListaFacturas">
+    <Key>
+      <PropertyRef Name="idFactura" />
+      <PropertyRef Name="nomTipoPago" />
+    </Key>
+    <Property Name="idFactura" Type="int" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="30" />
+    <Property Name="Cliente" Type="varchar" MaxLength="101" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="nomTipoPago" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="estado" Type="int" />
+    <Property Name="FinalTotal" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_listaMascotas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_listaMascotas">
+    <Key>
+      <PropertyRef Name="idMasc" />
+      <PropertyRef Name="nomRaza" />
+    </Key>
+    <Property Name="idMasc" Type="int" Nullable="false" />
+    <Property Name="nomMasc" Type="varchar" MaxLength="30" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="estado" Type="int" />
+    <Property Name="nomRaza" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="cliente" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_productosPedido' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_productosPedido">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="InvoiceId" Type="int" />
+    <Property Name="Producto" Type="varchar" MaxLength="50" />
+    <Property Name="Unit" Type="int" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Total" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_TrackingEstados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_TrackingEstados">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="estado" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InvoiceId" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="estado" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="observacion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'dbOnlineStore.dbo.vw_TrackingUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_TrackingUsuarios">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="estado" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InvoiceId" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="estado" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="observacion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__tblFactur__idFac__19DFD96B">
+    <End Role="tblFactura" Type="Self.tblFactura" Multiplicity="0..1" />
+    <End Role="tblFacturaDetalles" Type="Self.tblFacturaDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFactura">
+        <PropertyRef Name="idFactura" />
+      </Principal>
+      <Dependent Role="tblFacturaDetalles">
+        <PropertyRef Name="idFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblInvoic__Order__4222D4EF">
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrder">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblInvoic__UserI__412EB0B6">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__ProID__3D5E1FD2">
+    <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="0..1" />
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProducts">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__UserId__3E52440B">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__CatID__3A81B327">
+    <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="0..1" />
+    <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategories">
+        <PropertyRef Name="CatId" />
+      </Principal>
+      <Dependent Role="tblProducts">
+        <PropertyRef Name="CatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbOnlineStoreModel2StoreContainer">
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEstados" EntityType="Self.tblEstados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFactura" EntityType="Self.tblFactura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblFacturaDetalles" EntityType="Self.tblFacturaDetalles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMascota" EntityType="Self.tblMascota" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProveedor" EntityType="Self.tblProveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRaza" EntityType="Self.tblRaza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblServicio" EntityType="Self.tblServicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTipo" EntityType="Self.tblTipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTipoPago" EntityType="Self.tblTipoPago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTracking" EntityType="Self.tblTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTransaccion" EntityType="Self.tblTransaccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="getallorders" EntityType="Self.getallorders" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [getallorders].[InvoiceId] AS [InvoiceId], 
+    [getallorders].[UserId] AS [UserId], 
+    [getallorders].[user] AS [user], 
+    [getallorders].[Bill] AS [Bill], 
+    [getallorders].[Payment] AS [Payment], 
+    [getallorders].[InvoiceDate] AS [InvoiceDate], 
+    [getallorders].[Status] AS [Status]
+    FROM [dbo].[getallorders] AS [getallorders]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="getallorderusers" EntityType="Self.getallorderusers" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [getallorderusers].[InvoiceId] AS [InvoiceId], 
+    [getallorderusers].[UserId] AS [UserId], 
+    [getallorderusers].[user] AS [user], 
+    [getallorderusers].[Bill] AS [Bill], 
+    [getallorderusers].[Payment] AS [Payment], 
+    [getallorderusers].[InvoiceDate] AS [InvoiceDate], 
+    [getallorderusers].[Status] AS [Status]
+    FROM [dbo].[getallorderusers] AS [getallorderusers]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="user_invoices" EntityType="Self.user_invoices" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [user_invoices].[InvoiceId] AS [InvoiceId], 
+    [user_invoices].[Customer] AS [Customer], 
+    [user_invoices].[Bill] AS [Bill], 
+    [user_invoices].[Payment] AS [Payment], 
+    [user_invoices].[InvoiceDate] AS [InvoiceDate]
+    FROM [dbo].[user_invoices] AS [user_invoices]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_comboPedidos" EntityType="Self.vw_comboPedidos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_comboPedidos].[InvoiceId] AS [InvoiceId], 
+    [vw_comboPedidos].[pedido] AS [pedido]
+    FROM [dbo].[vw_comboPedidos] AS [vw_comboPedidos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_FacturasDetalles" EntityType="Self.vw_FacturasDetalles" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_FacturasDetalles].[idDetaFactura] AS [idDetaFactura], 
+    [vw_FacturasDetalles].[idFactura] AS [idFactura], 
+    [vw_FacturasDetalles].[ItemId] AS [ItemId], 
+    [vw_FacturasDetalles].[Producto] AS [Producto], 
+    [vw_FacturasDetalles].[UnitPrice] AS [UnitPrice], 
+    [vw_FacturasDetalles].[Quantity] AS [Quantity], 
+    [vw_FacturasDetalles].[Discount] AS [Discount], 
+    [vw_FacturasDetalles].[Total] AS [Total], 
+    [vw_FacturasDetalles].[estado] AS [estado]
+    FROM [dbo].[vw_FacturasDetalles] AS [vw_FacturasDetalles]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_getallproducts" EntityType="Self.vw_getallproducts" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_getallproducts].[ProID] AS [ProID], 
+    [vw_getallproducts].[Name] AS [Name], 
+    [vw_getallproducts].[Category] AS [Category], 
+    [vw_getallproducts].[Description] AS [Description], 
+    [vw_getallproducts].[Unit] AS [Unit], 
+    [vw_getallproducts].[Image] AS [Image], 
+    [vw_getallproducts].[Stock] AS [Stock], 
+    [vw_getallproducts].[Serie] AS [Serie], 
+    [vw_getallproducts].[Marca] AS [Marca], 
+    [vw_getallproducts].[estado] AS [estado], 
+    [vw_getallproducts].[FechaRegistro] AS [FechaRegistro], 
+    [vw_getallproducts].[idUser] AS [idUser]
+    FROM [dbo].[vw_getallproducts] AS [vw_getallproducts]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ListaFacturas" EntityType="Self.vw_ListaFacturas" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_ListaFacturas].[idFactura] AS [idFactura], 
+    [vw_ListaFacturas].[numero] AS [numero], 
+    [vw_ListaFacturas].[Cliente] AS [Cliente], 
+    [vw_ListaFacturas].[createDate] AS [createDate], 
+    [vw_ListaFacturas].[nomTipoPago] AS [nomTipoPago], 
+    [vw_ListaFacturas].[estado] AS [estado], 
+    [vw_ListaFacturas].[FinalTotal] AS [FinalTotal]
+    FROM [dbo].[vw_ListaFacturas] AS [vw_ListaFacturas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_listaMascotas" EntityType="Self.vw_listaMascotas" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_listaMascotas].[idMasc] AS [idMasc], 
+    [vw_listaMascotas].[nomMasc] AS [nomMasc], 
+    [vw_listaMascotas].[createDate] AS [createDate], 
+    [vw_listaMascotas].[estado] AS [estado], 
+    [vw_listaMascotas].[nomRaza] AS [nomRaza], 
+    [vw_listaMascotas].[cliente] AS [cliente]
+    FROM [dbo].[vw_listaMascotas] AS [vw_listaMascotas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_productosPedido" EntityType="Self.vw_productosPedido" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_productosPedido].[OrderId] AS [OrderId], 
+    [vw_productosPedido].[InvoiceId] AS [InvoiceId], 
+    [vw_productosPedido].[Producto] AS [Producto], 
+    [vw_productosPedido].[Unit] AS [Unit], 
+    [vw_productosPedido].[Qty] AS [Qty], 
+    [vw_productosPedido].[Total] AS [Total]
+    FROM [dbo].[vw_productosPedido] AS [vw_productosPedido]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_TrackingEstados" EntityType="Self.vw_TrackingEstados" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_TrackingEstados].[id] AS [id], 
+    [vw_TrackingEstados].[nombre] AS [nombre], 
+    [vw_TrackingEstados].[InvoiceId] AS [InvoiceId], 
+    [vw_TrackingEstados].[Created_On] AS [Created_On], 
+    [vw_TrackingEstados].[estado] AS [estado], 
+    [vw_TrackingEstados].[observacion] AS [observacion]
+    FROM [dbo].[vw_TrackingEstados] AS [vw_TrackingEstados]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_TrackingUsuarios" EntityType="Self.vw_TrackingUsuarios" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_TrackingUsuarios].[id] AS [id], 
+    [vw_TrackingUsuarios].[nombre] AS [nombre], 
+    [vw_TrackingUsuarios].[InvoiceId] AS [InvoiceId], 
+    [vw_TrackingUsuarios].[Created_On] AS [Created_On], 
+    [vw_TrackingUsuarios].[estado] AS [estado], 
+    [vw_TrackingUsuarios].[observacion] AS [observacion]
+    FROM [dbo].[vw_TrackingUsuarios] AS [vw_TrackingUsuarios]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tblFactur__idFac__19DFD96B" Association="Self.FK__tblFactur__idFac__19DFD96B">
+      <End Role="tblFactura" EntitySet="tblFactura" />
+      <End Role="tblFacturaDetalles" EntitySet="tblFacturaDetalles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblInvoic__Order__4222D4EF" Association="Self.FK__tblInvoic__Order__4222D4EF">
+      <End Role="tblOrder" EntitySet="tblOrder" />
+      <End Role="tblInvoice" EntitySet="tblInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblInvoic__UserI__412EB0B6" Association="Self.FK__tblInvoic__UserI__412EB0B6">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblInvoice" EntitySet="tblInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__ProID__3D5E1FD2" Association="Self.FK__tblOrder__ProID__3D5E1FD2">
+      <End Role="tblProducts" EntitySet="tblProducts" />
+      <End Role="tblOrder" EntitySet="tblOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__UserId__3E52440B" Association="Self.FK__tblOrder__UserId__3E52440B">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblOrder" EntitySet="tblOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__CatID__3A81B327" Association="Self.FK__tblProduc__CatID__3A81B327">
+      <End Role="tblCategories" EntitySet="tblCategories" />
+      <End Role="tblProducts" EntitySet="tblProducts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

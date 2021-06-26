@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edf2ec6130c241adb2bf1e8da0a9ac19" Name="Diagram1" ZoomLevel="87">
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblCategories" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblInvoice" Width="1.5" PointX="2.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblOrder" Width="1.5" PointX="4.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblProducts" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblUser" Width="1.5" PointX="0.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.user_invoices" Width="1.5" PointX="8.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_getallproducts" Width="1.5" PointX="6.625" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="dbOnlineStoreModel2.FK__tblProduc__CatID__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel2.FK__tblInvoic__Order__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel2.FK__tblInvoic__UserI__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel2.FK__tblOrder__ProID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="dbOnlineStoreModel2.FK__tblOrder__UserId__3E52440B" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_productosPedido" Width="1.5" PointX="10.25" PointY="0.5" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.getallorders" Width="1.5" PointX="4.625" PointY="4.375" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.getallorderusers" Width="1.5" PointX="6.625" PointY="4" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblEstados" Width="1.5" PointX="10.25" PointY="2.875" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblTracking" Width="1.5" PointX="8.375" PointY="2.625" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_TrackingEstados" Width="1.5" PointX="11.875" PointY="4.625" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_TrackingUsuarios" Width="1.5" PointX="10.25" PointY="4.625" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_comboPedidos" Width="1.5" PointX="11.875" PointY="0.5" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblProveedor" Width="1.5" PointX="11.875" PointY="2.25" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblMascota" Width="1.5" PointX="6.625" PointY="6.5" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblRaza" Width="1.5" PointX="8.375" PointY="5.5" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblServicio" Width="1.5" PointX="13.5" PointY="3.375" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_listaMascotas" Width="1.5" PointX="10.25" PointY="7" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblTipo" Width="1.5" PointX="8.375" PointY="7" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblTipoPago" Width="1.5" PointX="11.875" PointY="6.875" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblFactura" Width="1.5" PointX="13.5" PointY="6.25" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblTransaccion" Width="1.5" PointX="4.625" PointY="6.875" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.tblFacturaDetalles" Width="1.5" PointX="13.5" PointY="0.5" />
+        <AssociationConnector Association="dbOnlineStoreModel2.FK__tblFactur__idFac__19DFD96B" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_ListaFacturas" Width="1.5" PointX="0.5" PointY="5.875" />
+        <EntityTypeShape EntityType="dbOnlineStoreModel2.vw_FacturasDetalles" Width="1.5" PointX="2.5" PointY="8" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

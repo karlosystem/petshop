@@ -1,0 +1,90 @@
+﻿@model PetShopPedido.Models.getallorders
+
+@using (Html.BeginForm())
+{
+<div class="container mt-5 mb-5">
+    <div class="Back">
+        <i class="fa fa-arrow-left" onclick="Back()"></i>
+    </div>
+
+
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+
+
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <div class="input-group input-group-lg w-25 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Pedido</span>
+                </div>
+                @Html.EditorFor(model => Model.InvoiceId, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <div class="input-group input-group-lg w-25 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Cliente</span>
+                </div>
+                @Html.EditorFor(model => Model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <div class="input-group input-group-lg w-25 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Tipo de Pago</span>
+                </div>
+                @Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <div class="input-group input-group-lg w-25 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Monto S/.</span>
+                </div>
+                @Html.EditorFor(model => model.Bill, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <div class="input-group input-group-lg w-25 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Fecha</span>
+                </div>
+                @Html.EditorFor(model => model.InvoiceDate, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <div class="input-group input-group-lg w-25 mx-auto">
+                <input type="submit" value="Procesar Pedido" class="btn btn-success" />
+
+                <a href="@Url.Action("GetAllOrderDetail", "Home")" class="btn btn-info">
+                    <span>Pedidos</span>
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+ }

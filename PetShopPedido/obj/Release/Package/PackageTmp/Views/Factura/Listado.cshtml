@@ -1,0 +1,92 @@
+﻿@model IEnumerable<PetShopPedido.Models.vw_ListaFacturas>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#searchBox").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+
+<div class="container mt-5 mb-5">
+    <h2>Listado de Facturas</h2>
+    <p>
+
+        @Html.ActionLink("Crear nueva Factura", "Index", "Factura", null, new { @class = "btn btn-primary btn-large" })
+
+    </p>
+    <div class="form-group">
+        <input type="text" class="form-control col-lg-4 ml-auto" placeholder="Buscar por.." id="searchBox" />
+    </div>
+    <br>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.idFactura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.numero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.createDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinalTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nomTipoPago)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomTipoPago)
+                </td>
+                <td>
+                    <a href="@Url.Action("FacturaDetallexNumero", "Factura", new { id = item.idFactura})" class="btn btn-info">Detalles</a>
+                    <a href="@Url.Action("Delete", "Factura", new { id = item.idFactura})" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

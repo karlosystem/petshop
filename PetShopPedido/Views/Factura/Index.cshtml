@@ -1,0 +1,400 @@
+﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/js/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Item").val(0);
+        $("#Item").change(function () {
+            var ProId = $("#Item").val();
+            GetItemUnitPrice(ProId);
+        });
+
+        $("input[type=text]").change(function () {
+            CalcularSubTotal();
+        });
+
+        $("input[type=text]").keyup(function () {
+            CalcularBalance();
+        });
+
+        $("#btnAddToList").click(function () {
+            AddToTheItemList();
+        });
+
+        $("#btnPayment").click(function () {
+            FinalPayment();
+        });
+    });
+
+    function FinalPayment() {
+        var objOrderViewModel = {};
+        var ListOfOrderDetailViewModel = new Array();
+
+        objOrderViewModel.idTipoPago = $("#PaymentType").val();
+        objOrderViewModel.idUser = $("#Customer").val();
+        objOrderViewModel.FinalTotal = parseFloat($("#txtFinalTotal").val());
+
+
+        $("#tblDetalle").find("tr:gt(0)").each(function () {
+            var OrderDetailViewModel = {}
+            OrderDetailViewModel.Total = parseFloat($(this).find("td:eq(5)").text());
+            OrderDetailViewModel.ItemId = parseFloat($(this).find("td:eq(0)").text());
+            OrderDetailViewModel.UnitPrice = parseFloat($(this).find("td:eq(2)").text());
+            OrderDetailViewModel.Quantity = parseFloat($(this).find("td:eq(3)").text());
+            OrderDetailViewModel.Discount = parseFloat($(this).find("td:eq(4)").text());
+
+            ListOfOrderDetailViewModel.push(OrderDetailViewModel);
+        });
+
+        objOrderViewModel.ListOfOrderDetailViewModel = ListOfOrderDetailViewModel;
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(objOrderViewModel),
+            url: '/Factura/Index',
+            success: function (data) {
+                alert(data);
+            },
+            error: function () {
+                alert("Existe un problema al grabar datos");
+            }
+        });
+    }
+
+    function CalcularBalance() {
+        var FinalAmount = $("#txtPaymentTotal").val();
+        var PaymentAmount = $("#txtPaymentAmount").val();
+        var ReturnAmount = $("#txtReturnTotal").val();
+        var BalanceAmount = parseFloat(FinalAmount) - parseFloat(PaymentAmount) + parseFloat(ReturnAmount);
+        $("#txtBalance").val(parseFloat(BalanceAmount).toFixed(2));
+
+        //if (parseFloat(BalanceAmount) == 0) {
+        //    $("#btnPayment").removeAttr("disabled");
+        //} else {
+        //    $("#btnPayment").attr("disabled", "disabled");
+        //}
+
+
+    }
+
+    function RemoveItem(ProId) {
+        $(ProId).closest('tr').remove();
+    }
+
+    function AddToTheItemList() {
+        var tblItemList = $("#tblDetalle");
+
+        var UnitPrice = $("#txtUnitPrice").val();
+        var Quantity = $("#txtQuantity").val();
+        var Descuento = $("#txtDescuento").val();
+        var ItemId = $("#Item").val();
+        var ItemName = $("#Item option:selected").text();
+
+
+        var Total = (UnitPrice * Quantity) - Descuento;
+
+        var itemList = "<tr><td>" +
+            ItemId +
+            "</td><td>" +
+            ItemName +
+            "</td><td>" +
+            parseFloat(UnitPrice).toFixed(2) +
+            "</td><td>" +
+            parseFloat(Quantity).toFixed(2) +
+            "</td><td>" +
+            parseFloat(Descuento).toFixed(2) +
+            "</td><td>" +
+            parseFloat(Total).toFixed(2) +
+            "</td><td> <input type='button' value='Eliminar' name='remove' class='btn btn-danger' onclick='RemoveItem(this);'> </tr></tr>";
+
+        tblItemList.append(itemList);
+        FinalItemTotal();
+        ResetItem();
+    }
+
+    function FinalItemTotal() {
+        $("#txtFinalTotal").val("0.00");
+        var FinalTotal = 0.00;
+
+        $("#tblDetalle").find("tr:gt(0)").each(function () {
+            var Total = parseFloat($(this).find("td:eq(5)").text());
+            FinalTotal += Total;
+        });
+
+        $("#txtFinalTotal").val(parseFloat(FinalTotal).toFixed(2));
+
+
+        //datos del popup
+
+        $("#txtPaymentTotal").val(parseFloat(FinalTotal).toFixed(2));
+    }
+
+    function ResetItem() {
+        $("#txtUnitPrice").val('');
+        $("#txtQuantity").val('');
+        $("#txtDescuento").val('0.00');
+        $("#Item").val(0);
+        $("#txtTotal").val("");
+    }
+
+    function CalcularSubTotal() {
+        var UnitPrice = $("#txtUnitPrice").val();
+        var Quantity = $("#txtQuantity").val();
+        var Descuento = $("#txtDescuento").val();
+
+        var Total = (UnitPrice * Quantity) - Descuento;
+        $("#txtTotal").val(parseFloat(Total).toFixed(2));
+
+    }
+
+    function GetItemUnitPrice(ProId) {
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: { ProId: ProId },
+            url: '/factura/getItemUnitPrice',
+            success: function (data) {
+                $("#txtUnitPrice").val(parseFloat(data).toFixed(2));
+            },
+
+            error: function () {
+                alert("Hay un problema para visualizar el Precio del Producto")
+            }
+        });
+    }
+</script>
+
+<style>
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding-left: 10px !important;
+    }
+
+    legend {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0;
+        width: 35%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: #fff;
+    }
+</style>
+
+
+
+<div class="container mt-5 mb-5">
+    <h2>Agregar Factura</h2>
+    <p>
+        @Html.ActionLink("Regresar al Listado", "Listado", "Factura", null, new { @class = "btn btn-primary btn-large" })
+    </p>
+
+    <fieldset class="mt-5">
+        <legend>Factura</legend>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Cliente:
+                        @Html.DropDownList("Customer", new SelectList(Model.Item1, "Value", "Text"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Forma de Pago:
+                        @Html.DropDownList("PaymentType", new SelectList(Model.Item3, "Value", "Text"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Importe a Pagar:
+                        <input type="text" value="0.00" readonly="readonly" name="FinalTotal" id="txtFinalTotal" class="form-control">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </fieldset>
+
+
+    <fieldset class="mt-5">
+        <legend>Productos de Mascotas</legend>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Seleccionar:
+                        @Html.DropDownList("Item", new SelectList(Model.Item2, "Value", "Text"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Precio Unitario:
+                        <input type="text" style="text-align: left" readonly="readonly" id="txtUnitPrice" class="form-control" name="txtUnitPrice" value="0.00">
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Cantidad
+                        <input type="text" style="text-align: left" id="txtQuantity" class="form-control" name="Quantity" value="0">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Descuento:
+                        <input type="text" id="txtDescuento" style="text-align: left" class="form-control" name="Descuento" value="0.00">
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        Total
+                        <input type="text" readonly="readonly" style="text-align: left" id="txtTotal" class="form-control" name="Total" value="0.00">
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="button" style="margin-top: 20px;" value="Agregar a Lista" name="AddToList" id="btnAddToList" class="btn btn-success">
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </fieldset>
+
+    <fieldset class="mt-5">
+        <legend>Lista de Productos Agregados</legend>
+        <table style="width:100%" id="tblDetalle">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Producto
+                    </th>
+                    <th>
+                        Precio Unit S/.
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Descuento
+                    </th>
+                    <th>
+                        Total
+                    </th>
+                    <th>
+                        Accion
+                    </th>
+                </tr>
+            </thead>
+
+
+
+        </table>
+    </fieldset>
+
+</div>
+
+<div class="container" style="margin-top: 30px;">
+    <div class="form-group">
+        <input data-backdrop="static" data-keydrop="false" data-toggle="modal" data-target="#divPayment" type="button" value="Grabar" name="save" id="btnCheckout" class="btn btn-info" />
+
+    </div>
+</div>
+
+<!-- Central Modal Medium Success -->
+<div class="modal fade" id="divPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Pago de Fatura</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="container">
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        Pago Total:
+                        <input type="text" style="text-align: right" id="txtPaymentTotal" value="0.00" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        Descuento:
+                        <input type="text" style="text-align: right" id="txtPaymentAmount" value="0.00" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        Monto a Retornar:
+                        <input style="text-align: right" type="text" id="txtReturnTotal" value="0.00" class="form-control" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        Pago Final:
+                        <input style="text-align: right" type="text" id="txtBalance"  value="0.00" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <button class="btn btn-success" id="btnPayment" value="Payment">Pago</button>
+                <button class="btn btn-danger" id="btnClose" data-dismiss="modal" value="Cerrar">Cerrar</button>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

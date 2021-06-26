@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PetShopPedido.Models.getallorderusers>
+
+@{
+    ViewBag.Title = "OrderDetail";
+}
+
+<div class="container mt-5 mb-5">
+    <h2>Mis Pedidos</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Nro Pedido
+                </th>
+
+                <th>
+                    Usuario
+                </th>
+
+                <th>
+                    Importe S/.
+                </th>
+                <th>
+                    Tipo de Pago
+                </th>
+                <th>
+                    Fecha de Pedido
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>Acción</th>
+                <th>Tracking</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceId)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.user)
+        </td>
+
+        <td>
+            S/. @Html.DisplayFor(modelItem => item.Bill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceDate)
+        </td>
+        <td>
+
+            @if (item.Status == "0")
+            {
+                <button type="button" disabled class="btn btn-success">Aprobado</button>
+            }
+            else
+            {
+                <button type="button" disabled class="btn btn-info">Pendiente</button>
+            }
+
+        </td>
+
+        <td>
+            <a href="@Url.Action("DetallesPedidoCliente","Home", new { id = item.InvoiceId })" class="btn btn-primary">Productos</a>
+        </td>
+        <td>
+
+            @if (item.Status == "0")
+            {
+                <a href="@Url.Action("TrackingUsuarios","Home", new { id = item.InvoiceId })" class="btn btn-info">Tracking</a>
+            }
+            else
+            {
+                <button type="button" disabled class="btn btn-danger">No Disponible</button>
+            }
+
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>

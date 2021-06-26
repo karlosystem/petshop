@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PetShopPedido.Models.vw_TrackingUsuarios>
+
+@{
+    ViewBag.Title = "TrackingUsuarios";
+}
+
+<div class="container mt-5 mb-5">
+    <h2>Seguimiento de mi Pedido</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Pedido
+                </th>
+                <th>
+                    Registro
+                </th>
+                <th>
+                    Responsable
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.observacion)
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created_On)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    <button type="button" disabled class="btn btn-success">@Html.DisplayFor(modelItem => item.estado)</button>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.observacion)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @*<div class="row">
+        <div class="col-md-4 mx-auto offset-8">
+            <button class="btn btn-danger" onclick="window.history.go(-2)">Regresar</button>
+        </div>
+    </div>*@
+
+
+</div>

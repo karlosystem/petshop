@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PetShopPedido.Models.vw_getallproducts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/js/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#searchBox").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<div class="container-fluid mt-5 mb-5">
+    <h2>Listado de Productos</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Stock</th>
+                <th>Unit S/.</th>
+                <th>Serie</th>
+                <th>Marca</th>
+                <th>Estado</th>
+                <th>Registro</th>
+                <th>User</th>
+                <th>Imagen</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ProID</td>
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>@item.Stock</td>
+                <td>S/. @item.Unit</td>
+                <td>@item.Serie</td>
+                <td>@item.Marca</td>
+                <td>@item.estado</td>
+                <td>@item.FechaRegistro</td>
+                <td>@item.idUser</td>
+                <td><img src="~/Uploads/@item.Image" style="width:150px; height:100px;" /></td>
+                <td>
+                    <a href="@Url.Action("Edit", "Products", new { id = item.ProID})" class="btn btn-primary">Editar</a>
+                    <a href="@Url.Action("Delete", "Products", new { id = item.ProID })" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

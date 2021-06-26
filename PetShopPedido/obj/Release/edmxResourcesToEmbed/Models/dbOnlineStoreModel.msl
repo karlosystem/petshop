@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbOnlineStoreModel2StoreContainer" CdmEntityContainer="dbOnlineStoreModel">
+    <EntitySetMapping Name="tblCategories">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblCategories">
+        <MappingFragment StoreEntitySet="tblCategories">
+          <ScalarProperty Name="CatId" ColumnName="CatId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInvoice">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblInvoice">
+        <MappingFragment StoreEntitySet="tblInvoice">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Bill" ColumnName="Bill" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrder">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblOrder">
+        <MappingFragment StoreEntitySet="tblOrder">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="PayMethod" ColumnName="PayMethod" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblProducts">
+        <MappingFragment StoreEntitySet="tblProducts">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idProv" ColumnName="idProv" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Image03" ColumnName="Image03" />
+          <ScalarProperty Name="Image02" ColumnName="Image02" />
+          <ScalarProperty Name="DescriptionHTML" ColumnName="DescriptionHTML" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CatID" ColumnName="CatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUser">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="id_veterinario" ColumnName="id_veterinario" />
+          <ScalarProperty Name="fecharegistro" ColumnName="fecharegistro" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_invoices">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.user_invoices">
+        <MappingFragment StoreEntitySet="user_invoices">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Bill" ColumnName="Bill" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_getallproducts">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_getallproducts">
+        <MappingFragment StoreEntitySet="vw_getallproducts">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Serie" ColumnName="Serie" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_productosPedido">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_productosPedido">
+        <MappingFragment StoreEntitySet="vw_productosPedido">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="getallorders">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.getallorders">
+        <MappingFragment StoreEntitySet="getallorders">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="Bill" ColumnName="Bill" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="getallorderusers">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.getallorderusers">
+        <MappingFragment StoreEntitySet="getallorderusers">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="Bill" ColumnName="Bill" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEstados">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblEstados">
+        <MappingFragment StoreEntitySet="tblEstados">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTracking">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblTracking">
+        <MappingFragment StoreEntitySet="tblTracking">
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="Sys_Change_Date" ColumnName="Sys_Change_Date" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="Modified_On" ColumnName="Modified_On" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_TrackingEstados">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_TrackingEstados">
+        <MappingFragment StoreEntitySet="vw_TrackingEstados">
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_TrackingUsuarios">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_TrackingUsuarios">
+        <MappingFragment StoreEntitySet="vw_TrackingUsuarios">
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_comboPedidos">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_comboPedidos">
+        <MappingFragment StoreEntitySet="vw_comboPedidos">
+          <ScalarProperty Name="pedido" ColumnName="pedido" />
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProveedor">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblProveedor">
+        <MappingFragment StoreEntitySet="tblProveedor">
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="RUC" ColumnName="RUC" />
+          <ScalarProperty Name="nomProv" ColumnName="nomProv" />
+          <ScalarProperty Name="idProv" ColumnName="idProv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMascota">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblMascota">
+        <MappingFragment StoreEntitySet="tblMascota">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idRaza" ColumnName="idRaza" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="nomMasc" ColumnName="nomMasc" />
+          <ScalarProperty Name="idMasc" ColumnName="idMasc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRaza">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblRaza">
+        <MappingFragment StoreEntitySet="tblRaza">
+          <ScalarProperty Name="nomRaza" ColumnName="nomRaza" />
+          <ScalarProperty Name="idRaza" ColumnName="idRaza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblServicio">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblServicio">
+        <MappingFragment StoreEntitySet="tblServicio">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="fecServ" ColumnName="fecServ" />
+          <ScalarProperty Name="horarioServ" ColumnName="horarioServ" />
+          <ScalarProperty Name="desServ" ColumnName="desServ" />
+          <ScalarProperty Name="precServ" ColumnName="precServ" />
+          <ScalarProperty Name="nomServ" ColumnName="nomServ" />
+          <ScalarProperty Name="idServ" ColumnName="idServ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_listaMascotas">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_listaMascotas">
+        <MappingFragment StoreEntitySet="vw_listaMascotas">
+          <ScalarProperty Name="cliente" ColumnName="cliente" />
+          <ScalarProperty Name="nomRaza" ColumnName="nomRaza" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="nomMasc" ColumnName="nomMasc" />
+          <ScalarProperty Name="idMasc" ColumnName="idMasc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTipo">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblTipo">
+        <MappingFragment StoreEntitySet="tblTipo">
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="nomTipo" ColumnName="nomTipo" />
+          <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTipoPago">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblTipoPago">
+        <MappingFragment StoreEntitySet="tblTipoPago">
+          <ScalarProperty Name="nomTipoPago" ColumnName="nomTipoPago" />
+          <ScalarProperty Name="idTipoPago" ColumnName="idTipoPago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFactura">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblFactura">
+        <MappingFragment StoreEntitySet="tblFactura">
+          <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="idTipoPago" ColumnName="idTipoPago" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTransaccion">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblTransaccion">
+        <MappingFragment StoreEntitySet="tblTransaccion">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="idTransaccion" ColumnName="idTransaccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFacturaDetalles">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.tblFacturaDetalles">
+        <MappingFragment StoreEntitySet="tblFacturaDetalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+          <ScalarProperty Name="idDetaFactura" ColumnName="idDetaFactura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ListaFacturas">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_ListaFacturas">
+        <MappingFragment StoreEntitySet="vw_ListaFacturas">
+          <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="nomTipoPago" ColumnName="nomTipoPago" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_FacturasDetalles">
+      <EntityTypeMapping TypeName="dbOnlineStoreModel2.vw_FacturasDetalles">
+        <MappingFragment StoreEntitySet="vw_FacturasDetalles">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+          <ScalarProperty Name="idDetaFactura" ColumnName="idDetaFactura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

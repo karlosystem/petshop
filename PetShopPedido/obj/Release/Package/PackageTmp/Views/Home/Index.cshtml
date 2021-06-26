@@ -1,0 +1,101 @@
+﻿@model IEnumerable<PetShopPedido.Models.tblProducts>
+
+<section id="home-section" class="hero">
+    <div class="home-slider owl-carousel">
+        <div class="slider-item" style="background: url('images/bg_1.jpg')">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-md-12 ftco-animate text-center">
+                        <h1 class="mb-2">Encuentra todo lo que tu mascota necesita aquí</h1>
+                        <h2 class="subheading mb-4">Los mejores Precios del Perú</h2>
+                        <p><a href="#" class="btn btn-primary">Ver Detalles</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-item" style="background: url('images/bg_2.jpg')">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="col-sm-12 ftco-animate text-center">
+                        <h1 class="mb-2">Contamos con los mejores precios y delivery gratis</h1>
+                        <h2 class="subheading mb-4"> la tienda para tus mascotas</h2>
+                        <p><a href="#" class="btn btn-primary">Ver Detalles</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated">
+                <span class="subheading">Productos Destacados</span>
+                <h2 class="mb-4">Junio 2021</h2>
+                <p>Todos nuestros productos ya tienen un descuento del 25%</p>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#searchBox").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#result .col-md-6").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <div class="container">
+
+        <div class="row" id="result">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-3 ftco-animate fadeInUp ftco-animated">
+                    <div class="product">
+                        <a alt="Agregar a Carrito de Compras" title="Agregar a Carrito de Compras" href="@Url.Action("AddtoCart", "Home", new { id = @item.ProID })" class="img-prod">
+                            <img class="img-fluid" src="~/Uploads/@item.Image" style="height:250px" alt="Producto">
+                            <span class="status">25%</span>
+                            <div class="overlay"></div>
+                        </a>
+                        <div class="text py-3 pb-4 px-3 text-center">
+
+                            <h3><a href="#">@item.Name</a></h3>
+                            <div class="d-flex">
+                                <div class="pricing">
+                                    <p class="price">
+                                        <span class="price-sale">
+                                            S/. @item.Unit
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bottom-area d-flex px-3">
+                                <div class="m-auto d-flex">
+
+                                    <a alt="Agregar a Carrito de Compras" title="Agregar a Carrito de Compras" href="@Url.Action("AddtoCart", "Home", new { id = @item.ProID })" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                        <span><i class="ion-ios-cart"></i></span>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbOnlineStoreModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="CatId" />
+    </Key>
+    <Property Name="CatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblProduc__CatID__3A81B327" FromRole="tblCategories" ToRole="tblProducts" />
+  </EntityType>
+  <EntityType Name="tblInvoice">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Bill" Type="Int32" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK__tblInvoic__Order__4222D4EF" FromRole="tblInvoice" ToRole="tblOrder" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblInvoic__UserI__412EB0B6" FromRole="tblInvoice" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProID" Type="Int32" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="Int32" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="PayMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="tblInvoice" Relationship="Self.FK__tblInvoic__Order__4222D4EF" FromRole="tblOrder" ToRole="tblInvoice" />
+    <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblOrder__ProID__3D5E1FD2" FromRole="tblOrder" ToRole="tblProducts" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK__tblOrder__UserId__3E52440B" FromRole="tblOrder" ToRole="tblUser" />
+    <Property Name="InvoiceId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CatID" Type="Int32" />
+    <NavigationProperty Name="tblCategories" Relationship="Self.FK__tblProduc__CatID__3A81B327" FromRole="tblProducts" ToRole="tblCategories" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK__tblOrder__ProID__3D5E1FD2" FromRole="tblProducts" ToRole="tblOrder" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="Serie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DescriptionHTML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Image02" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Image03" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+    <Property Name="idProv" Type="Int32" />
+    <Property Name="idUser" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleType" Type="Int32" />
+    <NavigationProperty Name="tblInvoice" Relationship="Self.FK__tblInvoic__UserI__412EB0B6" FromRole="tblUser" ToRole="tblInvoice" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK__tblOrder__UserId__3E52440B" FromRole="tblUser" ToRole="tblOrder" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="fecharegistro" Type="DateTime" Precision="0" />
+    <Property Name="id_veterinario" Type="Int32" />
+  </EntityType>
+  <EntityType Name="user_invoices">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="Customer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bill" Type="Int32" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="vw_getallproducts">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="Serie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+    <Property Name="idUser" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__tblProduc__CatID__3A81B327">
+    <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="0..1" />
+    <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCategories">
+        <PropertyRef Name="CatId" />
+      </Principal>
+      <Dependent Role="tblProducts">
+        <PropertyRef Name="CatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblInvoic__Order__4222D4EF">
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="0..1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrder">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblInvoic__UserI__412EB0B6">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblInvoice">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__ProID__3D5E1FD2">
+    <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="0..1" />
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProducts">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblOrder__UserId__3E52440B">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tblOrder">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbOnlineStoreModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" />
+    <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" />
+    <EntitySet Name="tblOrder" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" />
+    <EntitySet Name="user_invoices" EntityType="Self.user_invoices" />
+    <EntitySet Name="vw_getallproducts" EntityType="Self.vw_getallproducts" />
+    <AssociationSet Name="FK__tblProduc__CatID__3A81B327" Association="Self.FK__tblProduc__CatID__3A81B327">
+      <End Role="tblCategories" EntitySet="tblCategories" />
+      <End Role="tblProducts" EntitySet="tblProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblInvoic__Order__4222D4EF" Association="Self.FK__tblInvoic__Order__4222D4EF">
+      <End Role="tblOrder" EntitySet="tblOrder" />
+      <End Role="tblInvoice" EntitySet="tblInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblInvoic__UserI__412EB0B6" Association="Self.FK__tblInvoic__UserI__412EB0B6">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblInvoice" EntitySet="tblInvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__ProID__3D5E1FD2" Association="Self.FK__tblOrder__ProID__3D5E1FD2">
+      <End Role="tblProducts" EntitySet="tblProducts" />
+      <End Role="tblOrder" EntitySet="tblOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblOrder__UserId__3E52440B" Association="Self.FK__tblOrder__UserId__3E52440B">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblOrder" EntitySet="tblOrder" />
+    </AssociationSet>
+    <EntitySet Name="vw_productosPedido" EntityType="dbOnlineStoreModel2.vw_productosPedido" />
+    <EntitySet Name="getallorders" EntityType="dbOnlineStoreModel2.getallorders" />
+    <EntitySet Name="getallorderusers" EntityType="dbOnlineStoreModel2.getallorderusers" />
+    <EntitySet Name="tblEstados" EntityType="dbOnlineStoreModel2.tblEstados" />
+    <EntitySet Name="tblTracking" EntityType="dbOnlineStoreModel2.tblTracking" />
+    <EntitySet Name="vw_TrackingEstados" EntityType="dbOnlineStoreModel2.vw_TrackingEstados" />
+    <EntitySet Name="vw_TrackingUsuarios" EntityType="dbOnlineStoreModel2.vw_TrackingUsuarios" />
+    <EntitySet Name="vw_comboPedidos" EntityType="dbOnlineStoreModel2.vw_comboPedidos" />
+    <EntitySet Name="tblProveedor" EntityType="dbOnlineStoreModel2.tblProveedor" />
+    <EntitySet Name="tblMascota" EntityType="dbOnlineStoreModel2.tblMascota" />
+    <EntitySet Name="tblRaza" EntityType="dbOnlineStoreModel2.tblRaza" />
+    <EntitySet Name="tblServicio" EntityType="dbOnlineStoreModel2.tblServicio" />
+    <EntitySet Name="vw_listaMascotas" EntityType="dbOnlineStoreModel2.vw_listaMascotas" />
+    <EntitySet Name="tblTipo" EntityType="dbOnlineStoreModel2.tblTipo" />
+    <EntitySet Name="tblTipoPago" EntityType="dbOnlineStoreModel2.tblTipoPago" />
+    <EntitySet Name="tblFactura" EntityType="dbOnlineStoreModel2.tblFactura" />
+    <EntitySet Name="tblTransaccion" EntityType="dbOnlineStoreModel2.tblTransaccion" />
+    <EntitySet Name="tblFacturaDetalles" EntityType="dbOnlineStoreModel2.tblFacturaDetalles" />
+    <AssociationSet Name="FK__tblFactur__idFac__19DFD96B" Association="dbOnlineStoreModel2.FK__tblFactur__idFac__19DFD96B">
+      <End Role="tblFactura" EntitySet="tblFactura" />
+      <End Role="tblFacturaDetalles" EntitySet="tblFacturaDetalles" />
+    </AssociationSet>
+    <EntitySet Name="vw_ListaFacturas" EntityType="dbOnlineStoreModel2.vw_ListaFacturas" />
+    <EntitySet Name="vw_FacturasDetalles" EntityType="dbOnlineStoreModel2.vw_FacturasDetalles" />
+  </EntityContainer>
+  <EntityType Name="vw_productosPedido">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceId" Type="Int32" />
+    <Property Name="Producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Unit" Type="Int32" />
+    <Property Name="Qty" Type="Int32" />
+    <Property Name="Total" Type="Int32" />
+  </EntityType>
+  <EntityType Name="getallorders">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bill" Type="Int32" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="getallorderusers">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Bill" Type="Int32" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblEstados">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblTracking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceId" Type="Int32" />
+    <Property Name="IdEstado" Type="Int32" />
+    <Property Name="Modified_On" Type="DateTime" Precision="0" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Sys_Change_Date" Type="DateTime" Precision="7" />
+    <Property Name="activo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vw_TrackingEstados">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="estado" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceId" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_TrackingUsuarios">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="estado" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceId" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="observacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_comboPedidos">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="pedido" Type="String" MaxLength="44" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblProveedor">
+    <Key>
+      <PropertyRef Name="idProv" />
+    </Key>
+    <Property Name="idProv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomProv" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="RUC" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblMascota">
+    <Key>
+      <PropertyRef Name="idMasc" />
+    </Key>
+    <Property Name="idMasc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomMasc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="idUser" Type="Int32" />
+    <Property Name="idRaza" Type="Int32" />
+    <Property Name="estado" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblRaza">
+    <Key>
+      <PropertyRef Name="idRaza" />
+    </Key>
+    <Property Name="idRaza" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomRaza" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblServicio">
+    <Key>
+      <PropertyRef Name="idServ" />
+    </Key>
+    <Property Name="idServ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomServ" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="precServ" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="desServ" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="horarioServ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecServ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="enabled" Type="Int32" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_listaMascotas">
+    <Key>
+      <PropertyRef Name="idMasc" />
+      <PropertyRef Name="nomRaza" />
+    </Key>
+    <Property Name="idMasc" Type="Int32" Nullable="false" />
+    <Property Name="nomMasc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="nomRaza" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblTipo">
+    <Key>
+      <PropertyRef Name="idTipo" />
+    </Key>
+    <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomTipo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblTipoPago">
+    <Key>
+      <PropertyRef Name="idTipoPago" />
+    </Key>
+    <Property Name="idTipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nomTipoPago" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblFactura">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="idUser" Type="Int32" />
+    <Property Name="idTipoPago" Type="Int32" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="FinalTotal" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="tblFacturaDetalles" Relationship="dbOnlineStoreModel2.FK__tblFactur__idFac__19DFD96B" FromRole="tblFactura" ToRole="tblFacturaDetalles" />
+  </EntityType>
+  <EntityType Name="tblTransaccion">
+    <Key>
+      <PropertyRef Name="idTransaccion" />
+    </Key>
+    <Property Name="idTransaccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ItemId" Type="Int32" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="Type" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblFacturaDetalles">
+    <Key>
+      <PropertyRef Name="idDetaFactura" />
+    </Key>
+    <Property Name="idDetaFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idFactura" Type="Int32" />
+    <Property Name="ItemId" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Quantity" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="estado" Type="Int32" />
+    <NavigationProperty Name="tblFactura" Relationship="dbOnlineStoreModel2.FK__tblFactur__idFac__19DFD96B" FromRole="tblFacturaDetalles" ToRole="tblFactura" />
+  </EntityType>
+  <Association Name="FK__tblFactur__idFac__19DFD96B">
+    <End Type="dbOnlineStoreModel2.tblFactura" Role="tblFactura" Multiplicity="0..1" />
+    <End Type="dbOnlineStoreModel2.tblFacturaDetalles" Role="tblFacturaDetalles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFactura">
+        <PropertyRef Name="idFactura" />
+      </Principal>
+      <Dependent Role="tblFacturaDetalles">
+        <PropertyRef Name="idFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_ListaFacturas">
+    <Key>
+      <PropertyRef Name="idFactura" />
+      <PropertyRef Name="nomTipoPago" />
+    </Key>
+    <Property Name="idFactura" Type="Int32" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Cliente" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
+    <Property Name="nomTipoPago" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="FinalTotal" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="vw_FacturasDetalles">
+    <Key>
+      <PropertyRef Name="idDetaFactura" />
+    </Key>
+    <Property Name="idDetaFactura" Type="Int32" Nullable="false" />
+    <Property Name="idFactura" Type="Int32" />
+    <Property Name="ItemId" Type="Int32" />
+    <Property Name="Producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Quantity" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Total" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="estado" Type="Int32" />
+  </EntityType>
+</Schema>
